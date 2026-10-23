@@ -1,7 +1,6 @@
-// Spec: specs/features/health-component.md (v0.1)
+// Spec: HealthComponent.md (same folder), v0.1
 //
-// Reference test written from the spec, before any implementation exists.
-// Move to Source/<Module>/Private/Tests/ once the game module is created.
+// Written from the spec, before any implementation exists.
 // Every Describe() names the requirement ID it proves. HEALTH-006 is covered
 // implicitly: every test uses a bare NewObject with no owner or world.
 

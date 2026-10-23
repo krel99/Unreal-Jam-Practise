@@ -25,14 +25,18 @@ These are not guidelines. If a rule blocks you, stop and say so.
 4. **Tests come from the spec, not from the code.** Every requirement ID has
    at least one test that names that ID. Write the test from the requirement
    text, ideally before the implementation.
-5. **Never change a test just to make it pass.** If a test fails, fix the
+5. **A spec and its test are a pair: same folder, same name.**
+   `specs/features/HealthComponent.md` is tested by
+   `specs/features/HealthComponent.spec.cpp`, and nowhere else. Never put a
+   spec's tests in another folder or split them across files.
+6. **Never change a test just to make it pass.** If a test fails, fix the
    code. Change the test only if the spec changed, or if the test misreads
    the spec. Say which one in your summary.
-6. **Ambiguity is a stop signal, not a judgement call.** If a requirement can
+7. **Ambiguity is a stop signal, not a judgement call.** If a requirement can
    be read two ways, don't pick one. Add it to the spec's *Open Questions*
    and ask. Small things the spec explicitly leaves to the implementer are
    fine to decide. Note the decision in your summary.
-7. **Stay in scope.** Do only what the spec and the task ask for. No drive-by
+8. **Stay in scope.** Do only what the spec and the task ask for. No drive-by
    refactors, no extra features, no speculative options.
 
 ## 2. Workflow for implementing a spec
@@ -40,8 +44,9 @@ These are not guidelines. If a rule blocks you, stop and say so.
 1. Read the spec in full, including *Out of Scope* and *Open Questions*.
    Unresolved questions that affect the requirements you're about to build
    block the work.
-2. For each requirement, write or update its test(s). Put the requirement ID
-   in the test name (e.g. `HEALTH-002`).
+2. For each requirement, write or update its test(s) in the spec's sibling
+   `<Name>.spec.cpp`. Put the requirement ID in the test name
+   (e.g. `HEALTH-002`).
 3. Implement the minimum code that makes those tests pass.
 4. Fill in the spec's *Traceability* table: requirement → test → code.
 5. Run the tests. Report results honestly, including failures and anything
@@ -51,7 +56,9 @@ These are not guidelines. If a rule blocks you, stop and say so.
 ## 3. Changing or proposing specs
 
 - New feature → copy `specs/_template.md` to
-  `specs/features/<area>-<short-name>.md`, set `Status: Draft`, fill it in.
+  `specs/features/<FeatureName>.md` (PascalCase, matching the main class
+  without its `U`/`A` prefix, e.g. `HealthComponent`), set `Status: Draft`,
+  fill it in. Its test file will be `specs/features/<FeatureName>.spec.cpp`.
 - Change to an approved spec → don't edit the requirement in place. Add an
   entry under *Proposed Changes* in that spec with the requirement ID, the
   current text, the proposed text and why. A human applies it and bumps the
@@ -89,13 +96,26 @@ Out-of-spec changes: <list or "none">
 
 ## 6. Project conventions (Unreal)
 
-- Gameplay code lives under `Source/<Module>/`. Tests live in
-  `Source/<Module>/Private/Tests/` as Unreal Automation Specs
-  (`BEGIN_DEFINE_SPEC`), named `<Thing>.spec.cpp`.
+- Gameplay code lives under `Source/<Module>/`. Tests do **not**; they live
+  next to their spec in `specs/features/` as Unreal Automation Specs
+  (`BEGIN_DEFINE_SPEC`). The `.spec.cpp` suffix is Unreal's name for that
+  test format.
 - Test paths start with `Jam.` (e.g. `Jam.Health`) so they can be run as a
   group: `-ExecCmds="Automation RunTests Jam; Quit"`.
+- **C++ for behaviour, Blueprints for content.** Anything a spec requirement
+  describes is written in C++, so it can be tested and reviewed as text.
+  Blueprints subclass those C++ classes and only pick meshes, sounds, VFX,
+  UI layout and tuning values. Spec'd logic never goes in a Blueprint graph.
+  Expose tuning values as `UPROPERTY(EditDefaultsOnly)` so Blueprints can
+  set them.
+- Blueprints are binary `.uasset` files made in the Unreal Editor. If you
+  can't run the editor, don't hand-write them. List the Blueprint steps a
+  human (or an in-editor Python script) needs to do in your summary.
 - Prefer logic that can be tested without a running world (plain UObjects or
   components with no world dependency). Spec requirements should say when a
   world is genuinely needed.
-- Until a module exists, reference tests live in `specs/tests/`. Move them
-  into the module when it's created.
+- Unreal only compiles files inside a module, so the game project must pull
+  `specs/features/*.spec.cpp` into its build (e.g. an editor-only test
+  module that adds `specs/features/` as a source directory). Set this up
+  when the project is created. Never "fix" the build by moving tests out of
+  `specs/`.

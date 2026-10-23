@@ -1,5 +1,8 @@
 # <Feature name>
 
+> Save as `specs/features/<FeatureName>.md`. Its tests go in
+> `specs/features/<FeatureName>.spec.cpp`: same folder, same name.
+
 | Field    | Value                                      |
 |----------|--------------------------------------------|
 | ID       | `<AREA>` (prefix for requirement IDs)      |

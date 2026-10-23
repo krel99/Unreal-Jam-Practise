@@ -66,7 +66,7 @@ it's easy to unit test.
 
 | Req ID | Test(s) | Code |
 |--------|---------|------|
-| `HEALTH-001` | `Jam.Health.HEALTH-001 ...` in `specs/tests/HealthComponent.spec.cpp` | not implemented |
+| `HEALTH-001` | `Jam.Health.HEALTH-001 ...` in `HealthComponent.spec.cpp` | not implemented |
 | `HEALTH-002` | `Jam.Health.HEALTH-002 ...` | not implemented |
 | `HEALTH-003` | `Jam.Health.HEALTH-003 ...` | not implemented |
 | `HEALTH-004` | `Jam.Health.HEALTH-004 ...` | not implemented |

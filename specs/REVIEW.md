@@ -26,7 +26,8 @@ Run each check and report findings in this order of severity:
 3. **Unspecified behaviour**: new or changed behaviour that maps to no
    requirement ID. Either it needs a spec or it should be removed.
 4. **Untested requirement**: a requirement touched by the change has no test
-   naming its ID, or the test wouldn't fail if the behaviour broke.
+   naming its ID, the test wouldn't fail if the behaviour broke, or the test
+   isn't in the spec's sibling `<FeatureName>.spec.cpp`.
 5. **Traceability gap**: the spec's *Traceability* table is missing or wrong
    for requirements touched by this change.
 6. **Secondary** (non-blocking): style, naming, performance, readability.
