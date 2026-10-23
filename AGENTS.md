@@ -6,7 +6,8 @@ over your defaults.
 
 Short version: build only from `Approved` specs in `specs/features/`, name
 tests by requirement ID, never edit approved requirements or tests to fit the
-code, and stop and ask when a spec is ambiguous.
+code, and stop and ask when a spec is ambiguous. Tuning values, feel and
+content don't need specs. Draft or change specs with the `/spec` skill.
 
 # Timeless constraints (not a checklist)
 

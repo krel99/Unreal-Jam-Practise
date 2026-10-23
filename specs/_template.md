@@ -3,16 +3,9 @@
 > Save as `specs/features/<FeatureName>.md`. Its tests go in
 > `specs/features/<FeatureName>.spec.cpp`: same folder, same name.
 
-| Field    | Value                                      |
-|----------|--------------------------------------------|
-| ID       | `<AREA>` (prefix for requirement IDs)      |
-| Status   | Draft \| Proposed \| Approved \| Implemented \| Deprecated |
-| Version  | 0.1                                        |
-| Owner    | <human who approves changes>               |
+**ID:** `<AREA>` (prefix for requirement IDs) · **Status:** Draft
 
-> Status meanings: **Draft**: being written, don't build. **Proposed**: ready
-> for human review. **Approved**: agents may implement. **Implemented**: all
-> requirements have passing tests. **Deprecated**: kept for history only.
+> **Draft**: being written, don't build. **Approved**: agents may implement.
 
 ## Summary
 
@@ -21,18 +14,28 @@ One or two sentences: what this is and why the game needs it.
 ## Requirements
 
 Each requirement is one testable statement. Use MUST / MUST NOT / SHOULD.
-State inputs, outputs, and edge cases. If you can't think of a test for it,
-it isn't a requirement yet.
+State inputs, outputs and edge cases. If you can't think of a test for it,
+it isn't a requirement. If it's a number someone will tweak, it belongs in
+*Tuning*, not here.
 
 - **`<AREA>-001`**: <The system MUST ...>
 - **`<AREA>-002`**: <...>
+
+## Tuning
+
+Values exposed as `UPROPERTY(EditDefaultsOnly)` for tweaking in the editor.
+Not requirements, not asserted in tests, edit freely.
+
+| Name | Starting value | What it does |
+|------|----------------|--------------|
+| `<MaxSpeed>` | `<600>` | <...> |
 
 ## Implementer's Discretion
 
 Things deliberately left open. Agents may decide these without asking, and
 must note what they chose.
 
-- <e.g. internal data structures, file layout>
+- <e.g. internal data structures, delegate types>
 
 ## Out of Scope
 
@@ -42,28 +45,8 @@ Things this spec does **not** cover. Agents must not build them under this spec.
 
 ## Open Questions
 
-Unresolved questions. A question that affects a requirement blocks
-implementation of that requirement.
+Unresolved questions, and proposed changes to approved requirements. A
+question that affects a requirement blocks implementation of that requirement.
 
 - [ ] <question> (affects `<AREA>-00X`)
-
-## Proposed Changes
-
-Agent- or human-proposed edits to approved requirements, waiting for approval.
-
-| Req ID | Current text | Proposed text | Reason |
-|--------|--------------|---------------|--------|
-
-## Traceability
-
-Filled in during implementation.
-
-| Req ID | Test(s) | Code |
-|--------|---------|------|
-| `<AREA>-001` | | |
-
-## Change Log
-
-| Version | Date | Change | By |
-|---------|------|--------|----|
-| 0.1 | YYYY-MM-DD | Initial draft | |
+- [ ] Proposed change to `<AREA>-00X`: <new text>. Why: <reason>

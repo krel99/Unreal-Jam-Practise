@@ -1,0 +1,32 @@
+# Unreal generated / build output
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+.vs/
+.idea/
+*.sln
+*.VC.db
+*.opensdf
+*.opendb
+*.sdf
+*.suo
+*.xcworkspace
+*.xcodeproj
+
+# Plugin build output
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Packaged builds
+*.pak
+*.ipa
+*.apk
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+
+# Claude Code local-only settings
+.claude/settings.local.json
