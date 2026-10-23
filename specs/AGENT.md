@@ -109,8 +109,7 @@ Out-of-spec changes: <list or "none">
   Expose tuning values as `UPROPERTY(EditDefaultsOnly)` so Blueprints can
   set them.
 - Blueprints are binary `.uasset` files made in the Unreal Editor. If you
-  can't run the editor, don't hand-write them. List the Blueprint steps a
-  human (or an in-editor Python script) needs to do in your summary.
+  can't run the editor, report an issue.
 - Prefer logic that can be tested without a running world (plain UObjects or
   components with no world dependency). Spec requirements should say when a
   world is genuinely needed.
